@@ -7,7 +7,7 @@ const sequelize = new Sequelize('gamedb', 'postgres', 'postgres', {
 
 sequelize.authenticate().then(
     function success() {
-        console.log("Connected to DB");
+        console.log('Connected to DB');
     },
 
     function fail(err) {
