@@ -1,5 +1,5 @@
-var router = require('express').Router();
-var Game = require('../db').import('../models/game');
+const router = require('express').Router();
+const Game = require('../db').import('../models/game');
 
 router.get('/all', (req, res) => {
     Game.findAll({ where: { owner_id: req.user.id } })
@@ -7,13 +7,13 @@ router.get('/all', (req, res) => {
             function findSuccess(data) {
                 res.status(200).json({
                     games: games,
-                    message: "Data fetched."
+                    message: 'Data fetched.'
                 })
             },
 
             function findFail() {
-                res.status(500).json({
-                    message: "Data not found"
+                res.status(404).json({
+                    message: 'Data not found'
                 })
             }
         )
@@ -29,8 +29,8 @@ router.get('/:id', (req, res) => {
             },
 
             function findFail(err) {
-                res.status(500).json({
-                    message: "Data not found."
+                res.status(404).json({
+                    message: 'Data not found.'
                 })
             }
         )
@@ -49,7 +49,7 @@ router.post('/create', (req, res) => {
             function createSuccess(game) {
                 res.status(200).json({
                     game: game,
-                    message: "Game created."
+                    message: 'Game created.'
                 })
             },
 
@@ -77,7 +77,7 @@ router.put('/update/:id', (req, res) => {
             function updateSuccess(game) {
                 res.status(200).json({
                     game: game,
-                    message: "Successfully updated."
+                    message: 'Successfully updated.'
                 })
             },
 
@@ -101,7 +101,7 @@ router.delete('/remove/:id', (req, res) => {
         function deleteSuccess(game) {
             res.status(200).json({
                 game: game,
-                message: "Successfully deleted"
+                message: 'Successfully deleted'
             })
         },
 
@@ -113,4 +113,4 @@ router.delete('/remove/:id', (req, res) => {
     )
 })
 
-module.exports = routers;
+module.exports = router;
